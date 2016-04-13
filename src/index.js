@@ -24,7 +24,7 @@ class App extends Component {
     return $.get(sub, (resp) => {
       const posts = resp.data.children;
       console.log('(getPosts) posts:', posts);
-      this.setState({posts: posts});
+      this.setState({ posts: posts, subreddit: subreddit });
       return posts;
     });
   }
@@ -33,7 +33,8 @@ class App extends Component {
     return (
       <div>
         <SearchBar onSearchRequest={(subreddit) => {this.getPosts(subreddit)}} />
-        <PostList subreddit={this.state.subreddit} posts={this.state.posts}/>
+        <h3>r/{this.state.subreddit}</h3>
+        <PostList posts={this.state.posts} />
       </div>
     );
   }

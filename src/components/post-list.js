@@ -7,12 +7,12 @@ export default class PostList extends Component {
     super(props);
 
     this.state = {
-      subreddit: props.subreddit
+      posts: []
     }
 
   }
   
-  postItems () {
+  postItems() {
     if (this.state && this.state.posts) {
       return this.state.posts.map((post) => {
         return (
@@ -30,13 +30,11 @@ export default class PostList extends Component {
     this.setState(newProps);
   }
 
-  render () {
+  render() {
     return (
-      <div>
-        <strong>r/{this.state.subreddit}</strong>
-        <ul>
-          {this.postItems()}
-        </ul>
+      <div className="col-md-4">
+        <div className="list-group">{this.postItems()}</div>
+        <center><a href="#">See More...</a></center>
       </div>
     );
   }
