@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 
-const PostListItem = (props) => {
-  console.log('(PostListItem) props:', props)
-  console.log('(PostListItem) post:', props.post)
-  return (
-    <li>post{props.post}</li>
-  );
+export default class PostListItem extends Component {
+
+  render () {
+    return (
+      <li>{this.props.post.data.title}</li>
+    );
+  }
 }
 
 export default PostListItem;

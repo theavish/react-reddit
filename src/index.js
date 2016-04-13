@@ -12,6 +12,9 @@ class App extends Component {
       posts: []
     };
 
+  }
+
+  componentDidMount () {
     this.getPosts('gaming')
     .then((posts) => {
       this.setState({posts: posts.data.children})

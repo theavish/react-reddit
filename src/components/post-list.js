@@ -1,23 +1,31 @@
-import React from 'react';
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import PostListItem from './post-list-item';
 
-const PostList = (props) => {
-  console.log('(PostList) props:', props);
+export default class PostList extends Component {
   
-  const postItems = props.posts.map((post) => {
-    console.log('(PostList) post:', post)
-    return (
-      <PostListItem
-      key={post.data.id}
-      post={post} />
-    );
-  });
+  postItems () {
+    if (this.state && this.state.posts) {
+      return this.state.posts.map((post) => {
+        return (
+          <PostListItem
+            key={post.data.id}
+            post={post} />
+        );
+      });
+    } else return null;
+  }
 
-  return (
-    <ul>
-      {postItems}
-    </ul>
-  );
+  componentWillReceiveProps(newProps) {
+    this.setState(newProps);
+  }
+
+  render () {
+    return (
+      <ul>
+        {this.postItems()}
+      </ul>
+    );
+  }
 };
 
-export default PostListItem;
