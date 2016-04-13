@@ -32,7 +32,7 @@ export default class PostList extends Component {
 
   render() {
     return (
-      <div className="col-md-4">
+      <div className="col-md-4" id="post-list">
         <div className="list-group">{this.postItems()}</div>
         <center><a href="#">See More...</a></center>
       </div>
