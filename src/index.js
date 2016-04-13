@@ -9,24 +9,22 @@ class App extends Component {
     super(props);
 
     this.state = {
+      subreddit: 'gaming',
       posts: []
     };
 
   }
 
   componentDidMount () {
-    this.getPosts('gaming')
-    .then((posts) => {
-      this.setState({posts: posts.data.children})
-    });
+    this.getPosts(this.state.subreddit);
   }
 
   getPosts(subreddit) {
-    console.log('retrieving from:', subreddit)
     const sub = 'http://www.reddit.com/r/' + subreddit + '/top.json?limit=5'
     return $.get(sub, (resp) => {
       const posts = resp.data.children;
       console.log('(getPosts) posts:', posts);
+      this.setState({posts: posts});
       return posts;
     });
   }
@@ -35,7 +33,7 @@ class App extends Component {
     return (
       <div>
         <SearchBar onSearchRequest={(subreddit) => {this.getPosts(subreddit)}} />
-        <PostList posts={this.state.posts}/>
+        <PostList subreddit={this.state.subreddit} posts={this.state.posts}/>
       </div>
     );
   }

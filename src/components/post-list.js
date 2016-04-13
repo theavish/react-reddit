@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import PostListItem from './post-list-item';
 
 export default class PostList extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      subreddit: props.subreddit
+    }
+
+  }
   
   postItems () {
     if (this.state && this.state.posts) {
@@ -13,7 +21,9 @@ export default class PostList extends Component {
             post={post} />
         );
       });
-    } else return null;
+    } else {
+      return null;
+    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -22,9 +32,12 @@ export default class PostList extends Component {
 
   render () {
     return (
-      <ul>
-        {this.postItems()}
-      </ul>
+      <div>
+        <strong>r/{this.state.subreddit}</strong>
+        <ul>
+          {this.postItems()}
+        </ul>
+      </div>
     );
   }
 };
