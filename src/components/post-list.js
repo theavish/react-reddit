@@ -17,6 +17,7 @@ export default class PostList extends Component {
       return this.state.posts.map((post) => {
         return (
           <PostListItem
+            onPostSelect={this.props.onPostSelect}
             key={post.data.id}
             post={post} />
         );

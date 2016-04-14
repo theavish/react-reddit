@@ -34,7 +34,7 @@ class PostDetailsBox extends Component {
       box = null;
     } else {
       //build iframe to display remote data
-      const height = '600px';
+      const height = '540px';
       box = (
         <iframe id="site" frameBorder="0px" height={height} width="100%"></iframe>        
       );

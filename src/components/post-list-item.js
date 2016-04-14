@@ -20,7 +20,7 @@ export default class PostListItem extends Component {
     }
 
     return (
-      <div className="list-group-item">
+      <div onClick={(e) => this.props.onPostSelect(post)} className="list-group-item">
         <div className="media-left">
           <img className="media-object" src={post.thumbnail} height="64px" width="64px" />
         </div>

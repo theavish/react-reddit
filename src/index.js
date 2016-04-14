@@ -31,13 +31,18 @@ class App extends Component {
     });
   }
 
+  onSelectPost(post) {
+    console.log(post)
+    this.setState({selectedPost: post});
+  }
+
   render() {
     return (
       <div>
         <SearchBar onSearchRequest={(subreddit) => {this.getPosts(subreddit)}} />
         <h3>r/{this.state.subreddit}</h3>
         <PostDetailsBox post={this.state.selectedPost} />
-        <PostList posts={this.state.posts} />
+        <PostList onSelectPost={this.onSelectPost} onPostSelect={(selectedPost) => this.setState({selectedPost})} posts={this.state.posts} />
       </div>
     );
   }
