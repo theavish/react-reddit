@@ -17,8 +17,8 @@ class PostDetailsBox extends Component {
     this.loadContent(newPost.url);
   }
 
-  loadContent(ExternalURL) {
-    $.getJSON('http://alloworigin.com/get?url=' + ExternalURL, (data) => {
+  loadContent(externalUrl) {
+    $.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent(externalUrl) + '&callback=?', (data) => {
       const doc = document.getElementById('site').contentWindow.document;
       doc.open();
       doc.write(data.contents);
@@ -31,7 +31,11 @@ class PostDetailsBox extends Component {
     let box = null;
     if (post.is_self) {
       //build custom box for comments etc.
-      box = null;
+      box = (
+        <div>
+          self post
+        </div>
+      );
     } else {
       //build iframe to display remote data
       const height = '540px';
