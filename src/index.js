@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/search-bar';
 import PostList from './components/post-list';
-import PostDetailsBox from './components/post-details-box';
 import $ from 'jquery';
 
 class App extends Component {
@@ -11,8 +10,7 @@ class App extends Component {
 
     this.state = {
       subreddit: 'gaming',
-      posts: [],
-      selectedPost: null
+      posts: []
     };
 
   }
@@ -26,14 +24,9 @@ class App extends Component {
     return $.get(sub, (resp) => {
       const posts = resp.data.children;
       console.log('(getPosts) posts:', posts);
-      this.setState({ posts: posts, subreddit: subreddit, selectedPost: posts[0].data});
+      this.setState({ posts: posts, subreddit: subreddit });
       return posts;
     });
-  }
-
-  onSelectPost(post) {
-    console.log(post)
-    this.setState({selectedPost: post});
   }
 
   render() {
@@ -41,8 +34,7 @@ class App extends Component {
       <div>
         <SearchBar onSearchRequest={(subreddit) => {this.getPosts(subreddit)}} />
         <h3>r/{this.state.subreddit}</h3>
-        <PostDetailsBox post={this.state.selectedPost} />
-        <PostList onSelectPost={this.onSelectPost} onPostSelect={(selectedPost) => this.setState({selectedPost})} posts={this.state.posts} />
+        <PostList posts={this.state.posts} />
       </div>
     );
   }
