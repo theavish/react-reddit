@@ -18,7 +18,7 @@ class PostDetailsBox extends Component {
   }
 
   loadContent(externalUrl) {
-    $.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent(externalUrl) + '&callback=?', (data) => {
+    $.getJSON('http://whateverorigin.org/get?url=' + externalUrl + '&callback=?', (data) => {
       const doc = document.getElementById('site').contentWindow.document;
       doc.open();
       doc.write(data.contents);
